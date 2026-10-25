@@ -40,13 +40,13 @@ h2{display:flex;align-items:center;gap:10px;font-size:1.5rem;font-weight:400;mar
 .rt b{font-size:2rem;display:block;line-height:1.2}.rt small{display:block}
 .rt>div{flex:1}.rt svg{width:56px;height:28px;flex:none}
 .bag{margin-top:14px;border:3px dashed var(--ink);border-radius:24px;padding:8px 16px;background:var(--yel)}
-.tabs{display:grid;grid-template-columns:repeat(8,1fr);position:relative;padding-top:58px;margin-bottom:8px}
-.tabs::before{content:"";position:absolute;left:0;right:0;top:54px;border-top:3px dashed var(--ink)}
-.wk{position:absolute;left:0;top:10px;width:12.5%;display:flex;justify-content:center;pointer-events:none;transition:left .6s cubic-bezier(.34,1.56,.64,1)}
+.tabs{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;position:relative;padding-top:58px;margin-bottom:8px}.tabs::-webkit-scrollbar{display:none}
+.tabs::before{content:"";position:absolute;left:0;width:145.4545%;top:54px;border-top:3px dashed var(--ink)}
+.wk{position:absolute;left:0;top:10px;width:18.1818%;display:flex;justify-content:center;pointer-events:none;transition:left .6s cubic-bezier(.34,1.56,.64,1)}
 .wk svg{width:34px;height:44px;overflow:visible}
 .wk.flip svg{scale:-1 1}
 .wk.walk svg{animation:step .22s ease-in-out infinite alternate}
-.tab{min-width:0;font:inherit;color:var(--ink);background:none;border:0;padding:8px 0 4px;text-align:center;cursor:pointer;line-height:1.3;opacity:.55}
+.tab{flex:0 0 18.1818%;min-width:0;font:inherit;color:var(--ink);background:none;border:0;padding:8px 0 4px;text-align:center;cursor:pointer;line-height:1.3;opacity:.55}
 .tab small{display:block;font-size:.65rem}.tab b{font-weight:400;font-size:.9rem}
 .tab[aria-pressed=true]{opacity:1}.tab[aria-pressed=true] b{font-size:1.05rem}
 .dh{display:flex;gap:14px;align-items:center;margin:8px 0 18px}
@@ -64,7 +64,7 @@ h2{display:flex;align-items:center;gap:10px;font-size:1.5rem;font-weight:400;mar
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .chips span{border:2px solid var(--ink);border-radius:999px;padding:0 9px;font-size:.8rem;background:var(--grn)}
 .lk{display:inline-block;border:2px solid var(--ink);border-radius:999px;padding:0 10px;font-size:.8rem;background:var(--yel);color:var(--ink);text-decoration:none;margin:8px 6px 0 0}.lk.m{background:var(--sky)}
-.td a{color:var(--ink)}
+.td a,.card p a{color:var(--ink)}
 .ic{display:inline-block;position:relative;vertical-align:middle;top:-2px;margin:-4px 0 -4px 8px;width:28px;height:28px;border:3px solid var(--ink);border-radius:50%;background:var(--sky)}.ic svg{position:absolute;inset:0;margin:auto;width:16px;height:16px}
 p .ic,.al .ic,dd .ic{width:24px;height:24px;top:-1px;margin:-3px 0 -3px 6px}p .ic svg,.al .ic svg,dd .ic svg{width:14px;height:14px}
 .gh{display:block;margin-top:10px;font-weight:400}
@@ -97,6 +97,9 @@ footer{text-align:center;padding:20px 16px 32px;font-size:.9rem}
 .blink{animation:blink 1.6s steps(2) infinite}
 @keyframes fly{to{transform:translate(18px,-10px)}}
 @keyframes step{to{transform:translateY(-5px) rotate(5deg)}}
+.hop{animation:hop 1.4s ease-in-out infinite alternate}.leaf{animation:fall 7s linear infinite}
+@keyframes hop{to{transform:translateY(-3px)}}
+@keyframes fall{0%{opacity:0;transform:translate(0,-6px) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(-30px,120px) rotate(200deg)}}
 @keyframes drift{to{transform:translateX(16px)}}
 @keyframes chug{to{transform:translateY(-2px)}}
 @keyframes blink{50%{opacity:.2}}
@@ -109,16 +112,20 @@ footer{text-align:center;padding:20px 16px 32px;font-size:.9rem}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <defs>
 <symbol id="plane" viewBox="0 0 80 40"><g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><path d="M34 15 24 3h16l12 12zM34 27 24 37h16l12-10z" fill="#F6D27A"/><path d="M6 22Q8 14 24 14h34q18 2 18 8t-18 6H24Q8 28 6 22z" fill="#F2A497"/></g><circle cx="58" cy="21" r="2.5" fill="#3E3A39"/><circle cx="48" cy="21" r="2.5" fill="#3E3A39"/></symbol>
-<symbol id="tower" viewBox="0 0 60 120"><g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><path d="M30 2v30" fill="none"/><path d="M14 42q0-12 16-12t16 12l-4 10H18z" fill="#F2A497"/><path d="M24 52h12l5 66H19z" fill="#FFFCF6"/><path d="M12 44h36" fill="none"/></g><circle class="blink" cx="30" cy="4" r="4" fill="#F2A497" stroke="#3E3A39" stroke-width="2"/></symbol>
+<symbol id="tower" viewBox="0 0 60 120"><g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><path d="M30 7v25" fill="none"/><path d="M14 42q0-12 16-12t16 12l-4 10H18z" fill="#F2A497"/><path d="M24 52h12l5 66H19z" fill="#FFFCF6"/><path d="M12 44h36" fill="none"/></g><circle class="blink" cx="30" cy="6" r="3.5" fill="#F2A497" stroke="#3E3A39" stroke-width="2"/></symbol>
 <symbol id="hanok" viewBox="0 0 120 80"><g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><rect x="24" y="38" width="72" height="38" fill="#FFFCF6"/><rect x="48" y="48" width="24" height="28" fill="#F6D27A"/><path d="M4 36Q30 32 40 14h40q10 18 36 22-16 6-24 2H28Q20 42 4 36z" fill="#A8D3E6"/><path d="M60 48v28M24 76h72" fill="none"/></g></symbol>
 <symbol id="train" viewBox="0 0 120 50"><g stroke="#3E3A39" stroke-width="3"><rect x="4" y="5" width="112" height="34" rx="14" fill="#A8D3E6"/><rect x="16" y="13" width="22" height="13" rx="5" fill="#FFFCF6"/><rect x="49" y="13" width="22" height="13" rx="5" fill="#FFFCF6"/><rect x="82" y="13" width="22" height="13" rx="5" fill="#FFFCF6"/><path d="M6 32h108" fill="none"/><circle cx="30" cy="43" r="5" fill="#F6D27A"/><circle cx="90" cy="43" r="5" fill="#F6D27A"/></g></symbol>
 <symbol id="cloud" viewBox="0 0 80 40"><path d="M8 34Q2 20 18 18 22 4 40 8q14-4 20 10 16 0 14 16z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/></symbol>
-<symbol id="kid" viewBox="0 0 40 52"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M11 40h18l5 10H6z" fill="#F2A497"/><path d="M13 33h14l2 7H11z" fill="#F6D27A"/><path d="M17 36l3 4 3-4z" fill="#F2A497"/><circle cx="20" cy="20" r="13" fill="#FFFCF6"/><circle cx="20" cy="6" r="4.5" fill="#3E3A39"/><path d="M7 19Q7 6 20 6Q33 6 33 19Q28 12 20 12Q12 12 7 19z" fill="#3E3A39"/><path d="M18 27Q20 29 22 27" fill="none" stroke-width="2"/></g><circle cx="15" cy="22" r="1.8" fill="#3E3A39"/><circle cx="25" cy="22" r="1.8" fill="#3E3A39"/><circle cx="12" cy="26" r="2.4" fill="#F2A497"/><circle cx="28" cy="26" r="2.4" fill="#F2A497"/></symbol>
+<symbol id="kid" viewBox="0 0 40 52"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M30 44Q39 42 37 33" fill="none" stroke-width="3"/><path d="M11 40h18l5 10H6z" fill="#A8D3E6"/><path d="M13 33h14l2 7H11z" fill="#F6D27A"/><path d="M17 36l3 4 3-4z" fill="#F2A497"/><path d="M8 15L9 3l9 6z" fill="#FFFCF6"/><path d="M32 15L31 3l-9 6z" fill="#FFFCF6"/><ellipse cx="20" cy="21" rx="14" ry="12" fill="#FFFCF6"/><path d="M14 10Q14 4 20 4Q26 4 26 10z" fill="#F6D27A"/><path d="M17.500 27Q20 29.500 22.500 27" fill="none" stroke-width="2"/><path d="M5 24l5 1M5 28l5-1M35 24l-5 1M35 28l-5-1" fill="none" stroke-width="1.800"/></g><path d="M10.500 11L11 6.500l3.500 2.500z" fill="#F2A497"/><path d="M29.500 11L29 6.500L25.500 9z" fill="#F2A497"/><circle cx="20" cy="3.500" r="2" fill="#F2A497" stroke="#3E3A39" stroke-width="1.500"/><circle cx="14.500" cy="22" r="1.800" fill="#3E3A39"/><circle cx="25.500" cy="22" r="1.800" fill="#3E3A39"/><ellipse cx="20" cy="24.500" rx="1.400" ry="1" fill="#F2A497"/><circle cx="11.500" cy="26.500" r="2.200" fill="#F2A497"/><circle cx="28.500" cy="26.500" r="2.200" fill="#F2A497"/></symbol>
 <symbol id="pin" viewBox="0 0 24 24"><path d="M12 22s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.500-7 12-7 12z" fill="#F2A497" stroke="#3E3A39" stroke-width="2.500" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.600" fill="#FFFCF6" stroke="#3E3A39" stroke-width="2"/></symbol>
 <symbol id="i-plane" viewBox="0 0 40 40"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="20" cy="20" r="18" fill="#A8D3E6" stroke-width="3"/><path d="M9 20L31 10L25 30L20 23z" fill="#FFFCF6"/><path d="M20 23L31 10" fill="none"/></g></symbol>
 <symbol id="i-cal" viewBox="0 0 40 40"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="20" cy="20" r="18" fill="#F6D27A" stroke-width="3"/><rect x="10" y="12" width="20" height="18" rx="4" fill="#FFFCF6"/><path d="M10 18h20M15 9v5M25 9v5" fill="none"/></g><circle cx="16" cy="24" r="1.800" fill="#F2A497"/><circle cx="24" cy="24" r="1.800" fill="#F2A497"/></symbol>
 <symbol id="i-chk" viewBox="0 0 40 40"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="20" cy="20" r="18" fill="#B9DAA5" stroke-width="3"/><rect x="11" y="9" width="18" height="23" rx="4" fill="#FFFCF6"/><rect x="15" y="6" width="10" height="6" rx="2.500" fill="#F2A497"/><path d="M15 22l3 3 7-7" fill="none"/></g></symbol>
 <symbol id="i-home" viewBox="0 0 40 40"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="20" cy="20" r="18" fill="#F2A497" stroke-width="3"/><rect x="12" y="21" width="16" height="10" fill="#FFFCF6"/><path d="M7 21Q15 20 17 11h6q2 9 10 10-5 3-8 1H15Q11 24 7 21z" fill="#A8D3E6"/><rect x="18" y="24" width="4" height="7" fill="#F6D27A"/></g></symbol>
+<symbol id="fem" viewBox="0 0 40 52"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M11 40h18l5 10H6z" fill="currentColor"/><path d="M13 33h14l2 7H11z" fill="#FFFCF6"/><path d="M17 36l3 4 3-4z" fill="#F6D27A"/><circle cx="20" cy="20" r="13" fill="#FFFCF6"/><circle cx="20" cy="6" r="4.5" fill="#3E3A39"/><path d="M7 19Q7 6 20 6Q33 6 33 19Q28 12 20 12Q12 12 7 19z" fill="#3E3A39"/><path d="M18 27Q20 29 22 27" fill="none" stroke-width="2"/></g><circle cx="15" cy="22" r="1.8" fill="#3E3A39"/><circle cx="25" cy="22" r="1.8" fill="#3E3A39"/><circle cx="12" cy="26" r="2.4" fill="#F2A497"/><circle cx="28" cy="26" r="2.4" fill="#F2A497"/></symbol>
+<symbol id="mal" viewBox="0 0 40 52"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M12 40h16l2 10H10z" fill="#FFFCF6"/><path d="M20 40v10" fill="none"/><path d="M11 33h18l1 8H10z" fill="currentColor"/><circle cx="20" cy="20" r="13" fill="#FFFCF6"/><path d="M7 19Q5 5 20 6Q35 5 33 19Q31 12 25 11Q16 14 10 12Q8 14 7 19z" fill="#3E3A39"/><path d="M18 27Q20 29 22 27" fill="none" stroke-width="2"/></g><circle cx="15" cy="22" r="1.8" fill="#3E3A39"/><circle cx="25" cy="22" r="1.8" fill="#3E3A39"/><circle cx="12" cy="26" r="2.4" fill="#F2A497"/><circle cx="28" cy="26" r="2.4" fill="#F2A497"/></symbol>
+<symbol id="tree" viewBox="0 0 30 40"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"><rect x="13" y="26" width="4" height="13" fill="#3E3A39"/><ellipse cx="15" cy="16" rx="13" ry="13" fill="currentColor"/></g></symbol>
+<symbol id="leaf" viewBox="0 0 20 20"><path d="M10 1l2 5 6-2-3 6 4 3-6 1-3 6-3-6-6-1 4-3-3-6 6 2z" fill="currentColor" stroke="#3E3A39" stroke-width="1.500" stroke-linejoin="round"/></symbol>
 </defs>
 </svg>
 
@@ -126,15 +133,29 @@ footer{text-align:center;padding:20px 16px 32px;font-size:.9rem}
 
 <main>
 <section id="home" class="hero">
-<svg viewBox="0 0 360 230" role="img" aria-label="首爾插圖：南山塔、韓屋、地鐵與飛機">
-<circle cx="296" cy="48" r="22" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+<svg viewBox="0 0 360 230" role="img" aria-label="首爾秋天插圖：南山塔、紅葉山丘、韓屋、地鐵與五位旅伴">
+<circle cx="300" cy="46" r="22" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
 <use class="drift" href="#cloud" x="10" y="26" width="76" height="38"/>
-<use class="drift" href="#cloud" x="200" y="70" width="64" height="32"/>
-<use href="#tower" x="149" y="80" width="49" height="98"/>
-<path d="M-6 205Q80 120 170 172T366 190v50H-6z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/>
-<path d="M-6 227H366" stroke="#3E3A39" stroke-width="3"/>
-<use href="#hanok" x="6" y="160" width="104" height="69"/>
-<use class="chug" href="#train" x="224" y="176" width="124" height="52"/>
+<use class="drift" href="#cloud" x="196" y="76" width="64" height="32"/>
+<use href="#tower" x="149" y="82" width="49" height="98"/>
+<path d="M-6 172Q50 128 120 160T250 150T366 160V240H-6z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+<use href="#tree" x="18" y="118" width="30" height="40" style="color:#F2A497"/>
+<use href="#tree" x="296" y="116" width="30" height="40" style="color:#F2A497"/>
+<path d="M-6 200Q70 168 150 192T366 184V240H-6z" fill="#F2A497" stroke="#3E3A39" stroke-width="3"/>
+<use href="#tree" x="326" y="150" width="28" height="38" style="color:#F6D27A"/>
+<use href="#tree" x="68" y="150" width="26" height="36" style="color:#F6D27A"/>
+<path d="M-6 216Q90 210 180 215T366 213V240H-6z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/>
+<use href="#hanok" x="2" y="164" width="96" height="64"/>
+<use class="hop" href="#fem" x="106" y="193" width="26" height="34" style="color:#F2A497"/>
+<use class="hop" href="#mal" x="132" y="193" width="26" height="34" style="color:#A8D3E6;animation-delay:.2s"/>
+<use class="hop" href="#fem" x="158" y="193" width="26" height="34" style="color:#A8D3E6;animation-delay:.4s"/>
+<use class="hop" href="#mal" x="184" y="193" width="26" height="34" style="color:#F6D27A;animation-delay:.6s"/>
+<use class="hop" href="#fem" x="210" y="193" width="26" height="34" style="color:#F6D27A;animation-delay:.8s"/>
+<use class="chug" href="#train" x="256" y="186" width="96" height="40"/>
+<use class="leaf" href="#leaf" x="70" y="30" width="12" height="12" style="color:#F2A497"/>
+<use class="leaf" href="#leaf" x="170" y="20" width="12" height="12" style="color:#F6D27A;animation-delay:2s"/>
+<use class="leaf" href="#leaf" x="250" y="30" width="12" height="12" style="color:#F2A497;animation-delay:4s"/>
+<use class="leaf" href="#leaf" x="330" y="60" width="12" height="12" style="color:#F6D27A;animation-delay:5.500s"/>
 <path d="M48 112q50-34 110-30" fill="none" stroke="#3E3A39" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/>
 <use class="fly" href="#plane" x="56" y="96" width="64" height="32"/>
 </svg>
@@ -198,25 +219,25 @@ p("16:10","南山纜車","",{map:N("FZ27W9Px")}),
 p("17:00","首爾塔","10:00–23:00・日落時間約 17:30",{must:1,map:N("5g4ka9Le")}),
 p("19:30","101號南山炸豬排 南山總店","10:30–22:00",{map:N("5t79AX51")}),
 a("狗狗 22:30 到金浦！")]},
-{d:"10/31",w:"六",t:"韓服體驗・昌德宮・益善洞",s:"朝鮮在逃公主",it:[
+{d:"10/31",w:"六",t:"韓服體驗・景福宮・益善洞",s:"朝鮮在逃公主",it:[
 x("地鐵","安國 → 景福宮","9 分鐘"),
-p("08:30","桃幺韓服","計程車來回昌德宮<br>刷卡會產生 10% 稅費，建議用現金或微信、支付寶<br>要穿淺色內衣和白色襪子",{must:1,map:N("5mvz2Er9")}),
+p("08:30","桃幺韓服","刷卡會產生 10% 稅費，建議用現金或微信、支付寶<br>要穿淺色內衣和白色襪子",{must:1,map:N("5mvz2Er9")}),
 p("11:??","隨便吃吃"),
-p("12:00","昌德宮秘苑","中文導覽 12:30–14:00<br>昌德宮門票 ₩3,000・秘苑門票 ₩5,000",{must:1,map:N("GYD7ZKbg"),ls:[["秘苑官網","https://ticket.uforus.co.kr/web/main?shopEncode=&amp;lang=en"]]}),
-p("14:30","桃幺韓服：返還"),
+p("12:00","景福宮","抵達光化門<br>13:00 光化門守門儀式，約 10 分鐘<br>14:00 興禮門廣場<a href='https://www.kh.or.kr/cont/view/fest/month/menu/210?idx=110776&amp;month=10&amp;searchCategory1=600&amp;searchCategory2&amp;searchCategory3&amp;searchCategory6&amp;searchDate=202610&amp;searchField=all&amp;searchText&amp;searchType&amp;thisPage=1&amp;weekSel&amp;year=2026' target='_blank' rel='noopener'>捷鐘衛兵閱兵儀式</a><br>當天最值得優先看的特別活動，約 45 分鐘<br>14:50 勤政殿（必看）、思政殿 → 交泰殿、峨嵢山花園、慶會樓（必看）→ 香遠亭",{must:1,map:N("GRD1hYln")}),
+p("16:00","桃幺韓服：返還"),
 x("地鐵","景福宮 → 鐘路三街","12 分鐘"),
-p("16:00","益善洞韓屋村散策","小夏鹽田"),
+p("17:00","益善洞韓屋村散策","小夏鹽田"),
 p("19:00","三清炭火花園烤肉","11:30–23:00・Catch Table 登記遠端候位",{map:N("54KB7OEt"),ls:[["Catch Table 候位","https://www.catchtable.net/zh-TW/shop/sancheong_ej"],["IG reels","https://www.instagram.com/reel/Da1sFj4O6Q7/"]]})]},
 {d:"11/1",w:"日",t:"韓華龐畢度・漢江野餐",s:"看展、買點心、躺平漢江",it:[
 p("09:00","Dotori Garden 安國店","08:00–23:00",{map:N("xRgHWwjH")}),
-a("11:00 退房、換飯店：Airbnb → UH Suite[[IgMzQmIB]]，先到飯店寄放行李"),
+a("11:00 退房、換飯店<br>Airbnb → UH Suite[[IgMzQmIB]]，先到飯店寄放行李"),
 x("地鐵","光化門 → 汝矣渡口","22 分鐘"),
 p("12:30","韓華龐畢度中心","10:00–18:00・展覽 AS ____ AS POSSIBLE<br>選物店",{map:N("G0peAPBV"),chips:["HAND TO HOME SEOUL","HAY","LOFA SEOUL","ROOMING","POSET","PRESENTMOMENT HOHO"]}),
 x("步行","龐畢度中心 → 漢江公園","5–10 分鐘"),
 p("16:30","汝矣島漢江公園野餐","1. 便利商店買飲料、零食<br>2. 租野餐墊（公園附近都有）<br>3. 點炸雞外送、買泡麵用漢江泡麵機煮<br>4. 看夕陽，待到夜景亮燈再離開",{must:1,map:N("56XqsD1s")})]},
 {d:"11/2",w:"一",t:"雪嶽山・洛山寺",s:"纜車、奇岩、秋楓，賞楓一日遊",it:[
 x("地鐵","市廳 → 明洞","25 分鐘"),
-p("07:50","南山藝場巴士停車場","明洞站 1 號出口，步行 5 分鐘<br>Klook 訂單憑證 KLK0193131626",{map:N("FjmO7M9p"),ls:[["Klook 一日遊行程","https://www.klook.com/zh-TW/activity/2529-mount-seorak-naksansa-temple-gangwon-do/?dd_referrer="]]}),
+p("07:50","南山藝場巴士停車場","明洞站 1 號出口，步行 5 分鐘",{map:N("FjmO7M9p"),ls:[["Klook 一日遊行程","https://www.klook.com/zh-TW/activity/2529-mount-seorak-naksansa-temple-gangwon-do/?dd_referrer="]]}),
 x("巴士","Klook 巴士","車程約 2.5–3 小時"),
 p("11:00","雪嶽山國家公園","行程不包含纜車票",{must:1}),
 x("巴士","Klook 巴士","車程約 20–30 分鐘"),
@@ -253,7 +274,7 @@ tabs.innerHTML='<div class="wk" id="wk"><svg viewBox="0 0 40 52" aria-hidden="tr
 function show(i){
  const d=D[i];let n=0;
  tabs.querySelectorAll(".tab").forEach((b,j)=>b.setAttribute("aria-pressed",j==i));
- const w=$("#wk");w.classList.toggle("flip",i<cur);if(i!=cur&&!rm){w.classList.add("walk");clearTimeout(wt);wt=setTimeout(()=>w.classList.remove("walk"),620)}w.style.left=i*12.5+"%";cur=i;
+ const w=$("#wk");w.classList.toggle("flip",i<cur);if(i!=cur&&!rm){w.classList.add("walk");clearTimeout(wt);wt=setTimeout(()=>w.classList.remove("walk"),620)}w.style.left=i*100/5.5+"%";const tb=tabs.querySelector(".tab[data-i='"+i+"']");tabs.scrollTo({left:tb.offsetLeft-(tabs.clientWidth-tb.offsetWidth)/2,behavior:rm?"auto":"smooth"});cur=i;
  $("#day").innerHTML=`<div class="dh"><div class="dn">${i+1}</div><div><h3>${d.t}</h3><p>${d.d}（${d.w}）・${d.s}</p></div></div><ul class="tl">`+d.it.map(o=>{
   const s=`style="--i:${n++}"`;
   if(o.k=="x")return `<li class="x${o.blk?" b":""}" ${s}><span class="tag ${cls[o.m]}">${o.m}</span><b style="font-weight:400">${o.n}</b><em>${o.d||""}</em>${lk(o)}</li>`;
