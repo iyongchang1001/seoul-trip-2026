@@ -75,12 +75,12 @@ p .ic,.al .ic,dd .ic{width:24px;height:24px;top:-1px;margin:-3px 0 -3px 6px}p .i
 li.x{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:.9rem}
 .tag{border:3px solid var(--ink);border-radius:999px;padding:0 10px;font-size:.85rem}
 .c-sky{background:var(--sky)}.c-yel{background:var(--yel)}.c-cor{background:var(--coral)}.c-grn{background:var(--grn)}.c-pap{background:var(--card)}
-li.x em{font-style:normal;opacity:.8}li.x.b em{flex-basis:100%}
+li.x em{font-style:normal;opacity:.8}li.x.b em,li.x em.nt{flex-basis:100%}
 li.al{border:3px solid var(--ink);border-radius:24px;padding:8px 14px;background:var(--coral)}
 .prog{margin-bottom:12px}
-.bar{height:20px;border:3px solid var(--ink);border-radius:999px;overflow:hidden;margin-top:6px}
-.bar i{display:block;height:100%;width:0;background:var(--grn);border-right:3px solid var(--ink);transition:width .4s}
-.bar i[style*="width:0%"]{border:0}
+.bar{height:22px;border:3px solid var(--ink);border-radius:999px;overflow:hidden;margin-top:6px;background:var(--paper)}
+.bar i{display:block;height:100%;width:0;background:var(--grn);border-radius:0 999px 999px 0;box-shadow:inset -3px 0 0 var(--ink);transition:width .4s}.bar i.full{box-shadow:none}
+
 .gl{margin:14px 0 6px}
 .td{display:flex;gap:12px;align-items:center;padding:8px 0;cursor:pointer}
 .td input{position:absolute;opacity:0}
@@ -191,7 +191,7 @@ footer{text-align:center;padding:20px 16px 32px;font-size:.9rem}
 <section id="todo">
 <h2><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#i-chk"/></svg>待辦清單</h2>
 <div class="box"><div class="prog"><span id="pt"></span><div class="bar"><i id="pb"></i></div></div><div id="tdl"></div></div>
-<p style="margin-top:14px"><b>外部連結</b><br><a class="lk" href="https://www.airportrailroad.com/intro" target="_blank" rel="noopener">AREX 機場快線時刻表</a><a class="lk" href="https://www.klook.com/zh-TW/activity/2529-mount-seorak-naksansa-temple-gangwon-do/?dd_referrer=" target="_blank" rel="noopener">Klook 雪嶽山一日遊</a></p>
+
 </section>
 
 <section id="stay">
@@ -208,13 +208,14 @@ footer{text-align:center;padding:20px 16px 32px;font-size:.9rem}
 
 <script>
 const p=(t,n,d,o)=>Object.assign({k:"p",t,n,d},o),x=(m,n,d,o)=>Object.assign({k:"x",m,n,d},o),a=(n,o)=>Object.assign({k:"a",n},o),N=c=>"https://naver.me/"+c;
-const cls={"地鐵":"c-sky","巴士":"c-yel","AREX":"c-cor","計程車":"c-grn","步行":"c-pap"};
+const cls={"地鐵":"c-sky","巴士":"c-yel","AREX":"c-cor","計程車":"c-grn","步行":"c-pap","轉乘":"c-pap"};
 const D=[
 {d:"10/29",w:"四",t:"抵達首爾",s:"人生有時會出爾反爾，也會出現在首爾",it:[
 p("15:55","高雄國際機場","虎航 IT 662"),
 p("19:45","金浦國際機場","韓國電子入境卡"),
-x("AREX","金浦機場 → 首爾 22 分鐘","20:53、20:58、21:03、21:10<br>T-money ₩1,750",{blk:1,ls:[["AREX 時刻表","https://www.airportrailroad.com/main"]]}),
-x("地鐵","首爾 → 安國","17 分鐘"),
+x("地鐵","5號線 金浦機場 → 鐘路三街","41 分鐘"),
+x("轉乘",""),
+x("地鐵","3號線 鐘路三街 → 安國","2 分鐘",{nt:"T-money ₩1,850<br>安國站 5 號出口有手扶梯"}),
 p("22:??","Airbnb 연화헌（緣花軒）","地址：SEOUL JONGNO-GU BUKCHON-RO 4-GIL 6-12",{map:N("FYrC9cvr")})]},
 {d:"10/30",w:"五",t:"明洞・首爾塔",s:"逛街、拍照、吃",it:[
 p("09:30","倫敦貝果博物館 安國店","07:00–18:00・Catch Table 登記遠端候位",{map:N("5wrjI0rj"),ls:[["Catch Table 候位","https://www.catchtable.net/zh-TW/shop/london_bagel_museum_anguk"]]}),
@@ -237,7 +238,7 @@ p("17:00","益善洞韓屋村散策","小夏鹽田"),
 p("19:00","三清炭火花園烤肉","11:30–23:00・Catch Table 登記遠端候位",{map:N("54KB7OEt"),ls:[["Catch Table 候位","https://www.catchtable.net/zh-TW/shop/sancheong_ej"],["IG reels","https://www.instagram.com/reel/Da1sFj4O6Q7/"]]})]},
 {d:"11/1",w:"日",t:"韓華龐畢度・漢江野餐",s:"看展、買點心、躺平漢江",it:[
 p("09:00","Dotori Garden 安國店","08:00–23:00",{map:N("xRgHWwjH")}),
-a("11:00 退房、換飯店<br>Airbnb → UH Suite[[IgMzQmIB]]，先到飯店寄放行李"),
+a("11:00 退房、換飯店<br>Airbnb → UH Suite[[IgMzQmIB]]，先到飯店寄放行李<br>市廳 5 號出口有手扶梯"),
 x("地鐵","光化門 → 汝矣渡口","22 分鐘"),
 p("12:30","韓華龐畢度中心","10:00–18:00・展覽 AS ____ AS POSSIBLE<br>選物店",{map:N("G0peAPBV"),chips:["HAND TO HOME SEOUL","HAY","LOFA SEOUL","ROOMING","POSET","PRESENTMOMENT HOHO"]}),
 x("步行","龐畢度中心 → 漢江公園","5–10 分鐘"),
@@ -268,8 +269,7 @@ p("","星空圖書館","",{must:1})]},
 {d:"11/5",w:"四",t:"哭著回家",s:"最後採買",it:[
 p("??:??","早午餐"),
 p("??:??","最後採買"),
-x("地鐵","市廳 → 首爾","8 分鐘"),
-x("AREX","首爾 → 金浦機場 22 分鐘","16:45、16:53、16:58、17:04<br>T-money ₩1,750",{blk:1,ls:[["AREX 時刻表","https://www.airportrailroad.com/main"]]}),
+x("地鐵","5號線 光化門 → 金浦機場","39 分鐘",{nt:"T-money ₩1,750<br>光化門 5 號出口有手扶梯"}),
 p("19:50、20:35","金浦國際機場","全日空 NH 868／虎航 IT 663"),
 p("21:55、22:40","抵達","東京羽田（NH 868）／高雄（IT 663）")]}
 ];
@@ -284,7 +284,7 @@ function show(i){
  const w=$("#wk");w.classList.toggle("flip",i<cur);if(i!=cur&&!rm){w.classList.add("walk");clearTimeout(wt);wt=setTimeout(()=>w.classList.remove("walk"),620)}w.style.left=i*100/5.5+"%";const tb=tabs.querySelector(".tab[data-i='"+i+"']");tabs.scrollTo({left:tb.offsetLeft-(tabs.clientWidth-tb.offsetWidth)/2,behavior:rm?"auto":"smooth"});cur=i;
  $("#day").innerHTML=`<div class="dh"><div class="dn">${i+1}</div><div><h3>${d.t}</h3><p>${d.d}（${d.w}）・${d.s}</p></div></div><ul class="tl">`+d.it.map(o=>{
   const s=`style="--i:${n++}"`;
-  if(o.k=="x")return `<li class="x${o.blk?" b":""}" ${s}><span class="tag ${cls[o.m]}">${o.m}</span><b style="font-weight:400">${o.n}</b><em>${o.d||""}</em>${lk(o)}</li>`;
+  if(o.k=="x")return `<li class="x${o.blk?" b":""}" ${s}><span class="tag ${cls[o.m]}">${o.m}</span><b style="font-weight:400">${o.n}</b><em>${o.d||""}</em>${o.nt?`<em class="nt">${o.nt}</em>`:""}${lk(o)}</li>`;
   if(o.k=="a")return `<li class="al" ${s}>⚠️ ${R(o.n)}${lk(o)}</li>`;
   return `<li class="p" ${s}>${o.t?`<time class="tm">${o.t}</time>`:""}<div class="card">${o.must?'<span class="must">必去</span>':""}<h4>${o.n}${o.map?ic(o.map):""}</h4>${o.d?`<p>${R(o.d)}</p>`:""}${(o.gs||[]).map(g=>`<b class="gh">${g[0]}</b><div class="chips">${g[1].map(c=>`<span>${c}</span>`).join("")}</div>`).join("")}${o.chips?`<div class="chips">${o.chips.map(c=>`<span>${c}</span>`).join("")}</div>`:""}${lk(o)}</div></li>`}).join("")+"</ul>";
 }
@@ -300,11 +300,11 @@ function cd(){
 }
 cd();setInterval(cd,3e4);
 
-const L=[["行前準備",["韓國電子入境卡|https://www.e-arrivalcard.go.kr/portal/main/index.do?locale=CH","AREX 機場快線車票|https://www.kkday.com/zh-tw/product/2878-arex-incheon-airport-express-train-one-way-nonstop-ticket-to-seoul-station-south-korea","預辦登機","旅平險","網路漫遊／eSIM","Climate Card／T-money Card（便利商店有賣）","萬國轉接頭（電壓 220V）","行動電源插孔貼絕緣膠帶，並放入透明袋","在台灣換好美金百鈔"]],["必備 App",["NAVER Map","Subway","Papago","CATCHTABLE","WOWPASS"]]];
+const L=[["行前準備",["韓國電子入境卡|https://www.e-arrivalcard.go.kr/portal/main/index.do?locale=CH","預辦登機","旅平險","網路漫遊／eSIM","Climate Card／T-money Card（便利商店有賣）","萬國轉接頭（電壓 220V）","行動電源插孔貼絕緣膠帶，並放入透明袋","在台灣換好美金百鈔"]],["必備 App",["NAVER Map","Subway","Papago","CATCHTABLE","WOWPASS"]]];
 let st={};try{st=JSON.parse(localStorage.getItem("seoul26")||"{}")}catch(e){}
 let id=0;
 $("#tdl").innerHTML=L.map(g=>`<div class="gl"><b>${g[0]}</b></div>`+g[1].map(t=>{const i=id++,[tx,u]=t.split("|");return `<label class="td"><input type="checkbox" data-i="${i}" ${st[i]?"checked":""}><span aria-hidden="true"></span><span>${u?`<a href="${u}" target="_blank" rel="noopener">${tx}</a>`:tx}</span></label>`}).join("")).join("");
-function prog(){const c=document.querySelectorAll(".td input"),n=[...c].filter(i=>i.checked).length;$("#pt").textContent=`已完成 ${n} / ${c.length}`;$("#pb").style.width=(n/c.length*100)+"%"}
+function prog(){const c=document.querySelectorAll(".td input"),n=[...c].filter(i=>i.checked).length;$("#pt").textContent=`已完成 ${n} / ${c.length}`;$("#pb").style.width=(n/c.length*100)+"%";$("#pb").classList.toggle("full",n==c.length)}
 $("#tdl").onchange=e=>{st[e.target.dataset.i]=e.target.checked;try{localStorage.setItem("seoul26",JSON.stringify(st))}catch(x){}prog()};
 prog();
 const na=[...document.querySelectorAll("nav a")],ss=na.map(a=>$(a.getAttribute("href")));let lk2=0,t2;
